@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #060709;
+  --bg2:       #0d0f15;
+  --surface:   #111318;
+  --surface2:  #181c24;
+  --surface3:  #1f2430;
+  --border:    #252a35;
+  --border2:   #2e3545;
+
+  --cyan:      #00f0ff;
+  --cyan-dim:  #00c4d4;
+  --violet:    #8b5cf6;
+  --violet-dim:#6d43d4;
+  --amber:     #f59e0b;
+  --green:     #10b981;
+  --red:       #ef4444;
+  --pink:      #ec4899;
+
+  --text:      #e2e8f0;
+  --text2:     #94a3b8;
+  --text3:     #4b5563;
+
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Outfit', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --shadow-glow-cyan:   0 0 20px rgba(0,240,255,0.15), 0 0 60px rgba(0,240,255,0.05);
+  --shadow-glow-violet: 0 0 20px rgba(139,92,246,0.15), 0 0 60px rgba(139,92,246,0.05);
+  --shadow-card:        0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.03) inset;
+}
+
+/* ── Reset cursor (custom cursor via JS) ──────────────────────────────────── */
+*, *:hover { cursor: none !important; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan-dim); }
+
+/* ── Selection ────────────────────────────────────────────────────────────── */
+::selection { background: rgba(0,240,255,0.2); color: var(--cyan); }
+
+/* ── Typography ───────────────────────────────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+/* ── Animated gradient background ────────────────────────────────────────── */
+.bg-animated {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,240,255,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(139,92,246,0.05) 0%, transparent 60%),
+    var(--bg);
+}
+
+/* ── Glassmorphism card ───────────────────────────────────────────────────── */
+.glass {
+  background: rgba(17,19,24,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── Glow text ────────────────────────────────────────────────────────────── */
+.text-glow-cyan   { color: var(--cyan);   text-shadow: 0 0 20px rgba(0,240,255,0.5); }
+.text-glow-violet { color: var(--violet); text-shadow: 0 0 20px rgba(139,92,246,0.5); }
+
+/* ── Shimmer animation ────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Pulse animation ──────────────────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(0,240,255,0.3); }
+  50%      { box-shadow: 0 0 20px rgba(0,240,255,0.7); }
+}
+.pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* ── Scan line overlay ────────────────────────────────────────────────────── */
+@keyframes scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ── Number counter ───────────────────────────────────────────────────────── */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Feature bar fill ─────────────────────────────────────────────────────── */
+@keyframes bar-fill {
+  from { width: 0%; }
+}
+
+/* ── Rotate for spinner ───────────────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Float for decorative elements ───────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ── Page fade in ─────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.5s ease forwards; }
+
+/* ── Input reset ──────────────────────────────────────────────────────────── */
+input, textarea, select {
+  font-family: var(--font-body);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus, textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0,240,255,0.1);
+}
+
+/* ── Button reset ─────────────────────────────────────────────────────────── */
+button {
+  font-family: var(--font-body);
+  cursor: none !important;
+  border: none;
+  outline: none;
+}
+
+/* ── Noise texture overlay ────────────────────────────────────────────────── */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
